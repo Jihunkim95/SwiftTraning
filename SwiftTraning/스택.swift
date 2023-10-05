@@ -74,12 +74,6 @@ stack 예제 1
 //    print("false")
 //}
 
-/*
- stack 예제 2
- 스택을 이용하여 후위 표기법(postfix notation)으로 된 수식을 계산하는 알고리즘을 설계하고 구현하세요.
-
- 예를 들어, "2 3 + 4 *"는 (2 + 3) * 4와 같은 수식입니다. 입력은 공백으로 구분된 문자열로 받으며, 출력은 Int 타입으로 반환하세요.
- */
 //func checkParentheses(_ input: String) -> Bool {
 //
 //    var stack: [Character] = []
@@ -108,67 +102,98 @@ stack 예제 1
 //print( checkParentheses("({}[()]())") )
 
 /*
+ stack 예제 2
+ 스택을 이용하여 후위 표기법(postfix notation)으로 된 수식을 계산하는 알고리즘을 설계하고 구현하세요.
+
+ 예를 들어, "2 3 + 4 *"는 (2 + 3) * 4와 같은 수식입니다. 입력은 공백으로 구분된 문자열로 받으며, 출력은 Int 타입으로 반환하세요.
+ */
+
+//func postFix(_ expression: String) -> Int {
+//    let tokens = expression.split(separator: " ")
+//
+//    var stack = [String]()
+//    for token in tokens {
+//        if "+-*/".contains(token) {
+//            let right = Int( stack.popLast()! )!
+//            let left = Int( stack.popLast()! )!
+//
+//            switch token {
+//            case "+":
+//                stack.append( String(right + left) )
+//            case "*":
+//                stack.append( String(right * left) )
+//            default:
+//                break
+//            }
+//
+//        } else {
+//            stack.append(String(token))
+//        }
+//
+//    }
+//
+//    return Int( stack.popLast()! )!
+//}
+
+
+//print( postFix("2 3 + 4 *") )
+/*
  stack 예제 3
  스택을 이용하여 중위 표기법(infix notation)으로 된 수식을 후위 표기법으로 변환하는 알고리즘을 설계하고 구현하세요.
 
  예를 들어, "(2 + 3) * 4"는 "2 3 + 4 *"로 변환됩니다. 입력은 공백으로 구분된 문자열로 받으며, 출력은 공백으로 구분된 문자열로 반환하세요.
  */
-
-//var str:String = "( 5 + 4 ) + ( 2 + 3 ) * 4 + 2 * 3"
-//var strArr:[String] = str.split(separator: "").map{String($0)}
-////스페이스바 제거
-//strArr.removeAll(where: {$0 == " "})
-//var numflag:Int = 0
-//var numflag2:Int = 0
-//
-//var result:String = ""
-//var Start:Int = 0
-//var End: Int = 0
-//var save:String = ""
-//
-////열린 소괄호를 찾을것.
-////닫힌 소괄호를 찾을것.
-////숫자인것을 붙일것.
-////연산자 문자는 빼놓고 반복문이 종료되는 시점에서 뒤에 붙일것
-////열린곳에서 닫힌곳까지 삭제 시킬것
-//
-//var cnt: Int = 0
-//while cnt < strArr.count {
-//
-//    numflag = Int(strArr[cnt]) ??  -1
-//
-//    if numflag == -1{
-//        //소괄호일때
-//        if strArr[cnt] == "("{
-//
-//            //닫힌 소괄호 찾기
-//            End = strArr.firstIndex(of: ")")!
-//            // 소괄호 중괄호 안에서 연산자 문자 찾기
-//            for j in cnt+1...End{
-//                numflag2 = Int(strArr[j]) ?? -1
-//                if numflag2 != -1{
-//                    result += strArr[j] + " "
-//                }else{
-//                    save = strArr[j+1]
-//                }
-//            }
-//
-//            strArr.removeSubrange(0...End)
-//            result += save + " "
-//            continue
-//        }else{
-//            //소괄호가 아닌 사칙연산 문자 저장해놓음
-//            save = strArr[cnt]
-////            print(cnt,save)
+//// 스택을 이용하여 중위 표기법을 후위 표기법으로 변환하는 함수
+//func infixToPostfix(_ expression: String) -> String {
+//    // 결과를 저장하는 문자열
+//    var result = ""
+//    // 연산자를 저장할 스택
+//    var stack: [String] = []
+//    // 입력된 수식을 공백으로 구분하여 배열로 저장
+//    let tokens = expression.split(separator: " ")
+//    // 배열의 각 요소에 대해 반복
+//    for token in tokens {
+//        // 요소가 숫자라면 결과를 추가
+//        if let _ = Int(token) {
+//            result += token + " "
 //        }
-//    }else{
-//
-//        result += strArr[cnt] + " "
-//        //숫자가 나올때 저장해놓은 사칙연산 문자를 붙임
-//        result += save + " "
+//        // 요소가 여는 괄호면 스택에 삽입
+//        else if token == "(" {
+//            stack.append(String(token))
+//        }
+//        // 요소가 닫는 괄호면 스택에서 여는 괄호를 만날 때 까지 팝하고 결과에 추가
+//        else if token == ")" {
+//            while let top = stack.popLast(), top != "(" {
+//                result += top + " "
+//            }
+//        }
+//        // 요소가 연산자라면.... 스택에 추가
+//        else {
+//            stack.append(String(token))
+//        }
+////        print(token, stack, result)
 //    }
 //
-//    cnt = cnt + 1
+//    // 스택에 남아있는 연산자를 모두 팝하여 결과에 추가
+//    while let top = stack.popLast() {
+//        result += top + " "
+//    }
 //
+//    return result
 //}
 //
+//print( infixToPostfix("( 2 + 3 ) * 4") )  // -> "2 3 + 4 *"
+//// 숫자인지 아닌지 판단
+//// 1번
+//if Int("12231") != nil{
+//    print("숫자")
+//}else{
+//    print("숫자아님")
+//}
+////2번
+//if let _ = Int("12231"){
+//    print("숫자")
+//}else{
+//    print("숫자아님")
+//}
+
