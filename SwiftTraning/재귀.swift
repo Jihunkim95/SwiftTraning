@@ -66,11 +66,18 @@ import Foundation
 //    }
 //}
 ////print(max([1,2,6,9,10,3,4]))
-//print(max([1]))
+//func maxRecursive(list: [Int]) -> Int {
+//    if list == [] { return 0 }
+//    if list.count == 1 { return list.first! }
+//    if list.first! < list.last! { return maxRecursive(list: Array(list.dropFirst())) }else{
+//        return maxRecursive(list: list.dropLast())
+//    }
+//}
+//print(maxRecursive(list:[1,2,6,9,10,3,4]))
+
 /*
  예제3번 피보나치
  */
-
 
 //func fibonacci(_ input:Int) -> Int{
 ////    print(input)
@@ -83,3 +90,89 @@ import Foundation
 //    }
 //}
 //print(fibonacci(7))
+
+//func fin() -> AnyIterator<Int>{
+//    var a = 0
+//    var b = 1
+//    
+//    return AnyIterator{
+//        (a, b) = (b,a+b)
+//        return a
+//    }
+//}
+
+//func fibonacci() -> AnyIterator<Int> {
+//    var left: Int = 0
+//    var right: Int = 1
+//    return AnyIterator {
+//        (left, right) = (right, left + right)
+//        return left
+//    }
+//}
+//var fib = fibonacci()
+//
+//for _ in 0..<10 {
+//    print(fib.next()!)
+//}
+
+//func fibs2() -> AnyIterator<Int> {
+//    var a = 0
+//    var b = 1
+//    return AnyIterator {
+//        let c = a + b
+//        a = b
+//        b = c
+//        return a
+//    }
+//}
+
+//func fib5(_ n: Int) -> Int {
+//    return n <= 2 ? 1: fib5(n-1) + fib5(n-2)
+//}
+//
+//
+//print( fib5(5) ) // -> 5
+
+//func fib(_ n: Int) -> [Int] {
+//    var fibList = [1,1]
+//
+//    if n == 1 || n == 2{
+//        return fibList
+//    }
+//    for i in 2..<n{
+//
+//    }
+//}
+
+// 반복자 사용하는 방법,AnyIterator
+
+//func fin() -> AnyIterator<Int>{
+//    var a = 0
+//    var b = 1
+//
+//    return AnyIterator{
+//        (a, b) = (b,a+b)
+//        return a
+//    }
+//}
+//
+//let fib = fin()
+//print(fib.next()!)
+//print(fib.next()!)
+//print(fib.next()!)
+//print(fib.next()!)
+//print(fib.next()!)
+
+//func fib(_ n: Int) -> Int {
+//    return n <= 2 ? 1 : fib(n-1) + fib(n-2)
+//}
+//
+//print( fib(5) )
+
+//let fib = { (_ n) in  n <= 2 ? 1 : fib(n-1) + fib(n-2)
+//}
+//print( fib(5) )
+//
+////함수 만들기
+//let a = {}
+//print( a )
