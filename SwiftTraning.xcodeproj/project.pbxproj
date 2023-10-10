@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C52B61E2AD5456100DB3DCA /* 튜플.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C52B61D2AD5456100DB3DCA /* 튜플.swift */; };
 		5CEFB91E2ACD7A4600A7D930 /* 반복문.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFB91D2ACD7A4600A7D930 /* 반복문.swift */; };
 		5CEFB9202ACD7A5000A7D930 /* 배열.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFB91F2ACD7A5000A7D930 /* 배열.swift */; };
 		5CEFB9222ACD7A5B00A7D930 /* 스택.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEFB9212ACD7A5B00A7D930 /* 스택.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C52B61D2AD5456100DB3DCA /* 튜플.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "튜플.swift"; sourceTree = "<group>"; };
 		5CEFB9132ACD7A2200A7D930 /* SwiftTraning */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftTraning; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CEFB91D2ACD7A4600A7D930 /* 반복문.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "반복문.swift"; sourceTree = "<group>"; };
 		5CEFB91F2ACD7A5000A7D930 /* 배열.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "배열.swift"; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				5CEFB92B2ACE728500A7D930 /* 정렬 알고리즘.swift */,
 				5CEFB92D2ACED94B00A7D930 /* 재귀.swift */,
 				5CEFB92F2ACFDC2E00A7D930 /* 큐.swift */,
+				5C52B61D2AD5456100DB3DCA /* 튜플.swift */,
 			);
 			path = SwiftTraning;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				5CEFB9222ACD7A5B00A7D930 /* 스택.swift in Sources */,
 				5CEFB92A2ACE4D3400A7D930 /* main.swift in Sources */,
 				5CEFB91E2ACD7A4600A7D930 /* 반복문.swift in Sources */,
+				5C52B61E2AD5456100DB3DCA /* 튜플.swift in Sources */,
 				5CEFB9242ACD7A6600A7D930 /* 조건문과 반복문.swift in Sources */,
 				5CEFB9262ACD7A7200A7D930 /* 조건문 실습.swift in Sources */,
 				5CEFB9282ACD7A7D00A7D930 /* 함수와 클래스.swift in Sources */,
