@@ -66,7 +66,7 @@ import Foundation
 //    }
 //    
 //    func introduce(){
-//        print("안녕 난 사람,그렇다면 넌 오람?")
+//        print("안녕? 난 사람,넌 오람?")
 //    }
 //}
 //
@@ -126,7 +126,7 @@ import Foundation
 //    }
 //    //오버라이드는 반환 타입이 일치해야하나봄..그렇기에 억지로return 을 사용
 //    func area() -> Float{
-//        return 1
+//        return 0
 //    }
 //}
 //
