@@ -170,31 +170,29 @@ import Foundation
 //이 동물은 새이고 이름은 짹짹이입니다.
 //
 ///*
-//// 열거형 예제 03 ㅍ
+//// 열거형 예제 03
 //// 열거형을 사용하여 계절을 나타내는 타입을 정의하고,
 //// 현재 날짜에 따라서 어떤 계절인지 출력하는 함수를 작성하세요.
 //// (날짜는 임의로 지정해도 됩니다.)
 //// */
 //
-//enum Today{
-//    case month
-//    case day
+//enum Season {
+//    case spring, summer, autumn, winter
 //}
-//func getSeason(date: (month: Int,day: Int))->String{
-////    print("\(date)")
-//    switch date {
-//    case (1...3,_):
-//        return "spring"
-//    case (4...6,_):
-//        return "summer"
-//    case (7...10,_):
-//        return "autumn"
-//    case (11...12,_):
-//        return "winter"
+//
+//func getSeason(date: (month: Int, day: Int)) -> Season {
+//    switch date.month {
+//    case 3...5:
+//        return .spring
+//    case 6...8:
+//        return .summer
+//    case 9...11:
+//        return .autumn
 //    default:
-//        return "asdd"
+//        return .winter
 //    }
 //}
+//
 //
 //// 예시:
 //let today = (month: 10, day: 17)
@@ -204,7 +202,6 @@ import Foundation
 //print("오늘은 \( getSeason(date: (month: 6, day: 17)) )입니다.")      // 오늘은 summer입니다.
 //print("오늘은 \( getSeason(date: (month: 12, day: 15)) )입니다.")     // 오늘은 winter입니다.
 //print("오늘은 \( getSeason(date: (month: 3, day: 1)) )입니다.")       // 오늘은 spring입니다.
-//
 
 
 //
@@ -278,3 +275,215 @@ import Foundation
 //2. 사용자 지정데이터 유형들에 인자들(.A,.B)의 열거형으로 압축
 //3. 함수안에 인자를 선언한후 switch문으로 값을 변환한다.
 //4. 중간중간 print를한다.
+
+/*
+ 1. throws 하는 함수에 do/catch 로 에러처리를 할수있다
+ 2. throws 한 함수는 try 로 실행해야 된다
+ */
+//enum SeasonsError: Error {
+//    case monthError
+//    case dayError
+//}
+//func getSeason(date:(Int,Int)) throws-> String{
+//    let month = date.0
+//    let day = date.1
+////    let season: Seasons
+//    let error: SeasonsError
+//
+//    do {
+//        guard month > 0 && month < 13 else {
+//            throw SeasonsError.monthError
+//        }
+//
+//        guard day > 0 && day < 31 else{
+//            throw SeasonsError.dayError
+//        }
+//
+//        switch month {
+//        case 0...5:
+//            return "봄"
+//        case 6...8:
+//            return "여름"
+//        case 9...10:
+//            return "가을"
+//        case 11...12:
+//            return "겨울"
+//        default:
+//            return "겨울"
+//        }
+//    } catch SeasonsError.monthError{
+//        return "월 에러"
+//    } catch SeasonsError.dayError{
+//        return "일 에러"
+//    }
+//}
+//let today:(month: Int, day: Int) = (month: 7, day: 2322)
+//let season = try getSeason(date: today)
+//
+//print("오늘은 \(season)입니다")
+
+/*
+ 3. 열거형에 타입을 주면 rawValue 로 꺼내쓸수 있다
+ */
+//enum Seasons: String {
+//    case spring = "봄"
+//    case summer = "여름"
+//    case autumn = "가을"
+//    case winter = "겨울"
+//}
+//
+//func getSeason(date:(Int,Int)) throws-> String{
+//    let month = date.0
+//    let day = date.1
+//    if day < 32{
+//
+//        switch month {
+//        case 0...5:
+//            return Seasons.spring.rawValue
+//        case 6...8:
+//            return Seasons.summer.rawValue
+//        case 9...10:
+//            return Seasons.autumn.rawValue
+//        case 11...12:
+//            return Seasons.winter.rawValue
+//        default:
+//            return Seasons.winter.rawValue
+//        }
+//    }else{
+//        return "Error"
+//    }
+//}
+//let today:(month: Int, day: Int) = (month: 7, day: 12)
+//let season = try getSeason(date: today)
+//
+//print("오늘은 \(season)입니다")
+
+/*
+ 4. 웹 에러 핸들링
+ */
+//enum CustomError: Error {
+//    case pageNotFound
+//    case internalServerError
+//    case unknownError
+//}
+//
+//func fetch(responseCode: Int) throws -> Void {
+//    do{
+//        switch responseCode {
+//        case 200:
+//            print("The status is normal.")
+//        case 404:
+//            throw CustomError.pageNotFound
+//        case 500:
+//            throw CustomError.internalServerError
+//        default:
+//            throw CustomError.unknownError
+//        }
+//    } catch CustomError.pageNotFound{
+//        print("The page is not found.")
+//    } catch CustomError.internalServerError{
+//        print("Internal server error occurred.")
+//    } catch CustomError.unknownError{
+//        print("Unknown error occurred.")
+//    }
+//}
+//try fetch(responseCode: 200)
+//
+///*
+// 열거형 예제 06
+// 열거형을 사용하여 방향을 나타내는 타입을 정의하고,
+// 현재 위치와 방향을 매개변수로 받아서 다음 위치를 반환하는 함수를 작성하세요.
+// (위치는 x, y 좌표로 표현하고, 방향은 상, 하, 좌, 우로 표현합니다.)
+// */
+//
+//enum Direction {
+//    case right,left,up,down
+//}
+//
+//func move(position: (x: Int, y: Int), direction: Direction) -> (x: Int, y: Int) {
+//
+//    var input = position
+//
+//    switch (direction) {
+//    case .right:
+//        input.x += 1
+//    case .left:
+//        input.x += -1
+//    case .up:
+//        input.y += 1
+//    case .down:
+//        input.y += -1
+//    }
+//    return input
+//}
+//// 예시:
+//let currentPosition = (x: 0, y: 0)
+//
+//var nextPosition = move(position: currentPosition, direction: .right)
+//print("다음 위치는 (\(nextPosition.x), \(nextPosition.y))입니다.")  // 다음 위치는 (1, 0)입니다.
+//
+//nextPosition = move(position: currentPosition, direction: .left)
+//print("다음 위치는 (\(nextPosition.x), \(nextPosition.y))입니다.")  // 다음 위치는 (-1, 0)입니다.
+//
+//nextPosition = move(position: currentPosition, direction: .up)
+//print("다음 위치는 (\(nextPosition.x), \(nextPosition.y))입니다.")  // 다음 위치는 (0, 1)입니다.
+//
+//nextPosition = move(position: currentPosition, direction: .down)
+//print("다음 위치는 (\(nextPosition.x), \(nextPosition.y))입니다.")  // 다음 위치는 (0, -1)입니다.
+//
+///*
+// 열거형 예제 07
+// 열거형을 사용하여 주사위의 면을 나타내는 타입을 정의하고,
+// 랜덤한 주사위의 면을 반환하는 함수를 작성하세요.
+// */
+//
+//enum Dice{
+//    case one,two,three,four,five,six
+//}
+//
+//func rollDice() -> Dice{
+//    return [Dice.one,Dice.two,Dice.three,Dice.four,Dice.six].randomElement()!
+//}
+//// 예시:
+//let dice = rollDice()
+//
+//print("주사위의 면은 \(dice)입니다.")   // 주사위의 면은 two입니다.
+
+// 실행할 때마다 다음 6가지 경우중 랜덤하게 출력
+// 주사위의 면은 one입니다.
+// 주사위의 면은 three입니다.
+// 주사위의 면은 four입니다.
+// 주사위의 면은 five입니다.
+// 주사위의 면은 six입니다.
+
+/*
+ 열거형 예제 08
+ 열거형을 사용하여 색상을 나타내는 타입을 정의하고,
+ 색상의 배열을 만들어서 반복문으로 각 색상의 이름과 RGB 값을 출력하는 함수를 작성하세요.
+ */
+//
+//enum Color {
+//    case red(r:Int,g:Int,b:Int)
+//    case green(r:Int,g:Int,b:Int)
+//    case blue(r:Int,g:Int,b:Int)
+//}
+//func printColors(colors: [Color]){
+//    for color in colors {
+//        switch color {
+//        case .red(r: let r,g: let g,b: let b):
+//            print("이 색상은 빨강이고 RGB (\(r), \(g), \(b))값은 입니다.")
+//        case .green(r: let r, g: let g, b: let b):
+//            print("이 색상은 녹색이고 RGB (\(r), \(g), \(b))값은 입니다.")
+//        case .blue(r: let r, g: let g, b: let b):
+//            print("이 색상은 파랑이고 RGB (\(r), \(g), \(b))값은 입니다.")
+//        }
+//    }
+//
+//}
+//// 예시:
+//let colors = [Color.red(r: 255, g: 0, b: 0), Color.green(r: 0, g: 255, b: 0), Color.blue(r: 0, g: 0, b: 255)]
+//printColors(colors: colors)
+////// 출력결과
+////이 색상은 빨강이고 RGB 값은 (255, 0, 0)입니다.
+////이 색상은 초록이고 RGB 값은 (0, 255, 0)입니다.
+////이 색상은 파랑이고 RGB 값은 (0, 0, 255)입니다.

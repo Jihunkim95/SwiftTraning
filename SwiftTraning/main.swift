@@ -7,210 +7,267 @@
 
 import Foundation
 
-///*
-// 열거형 개요 p.111
-//미리 정의된 값 집합으로 구성된 사용자 지정 데이터 유형
-//(연관된 항목들을 묶어서 표현할 수 있는 타입)
-//열거형은 일반적으로 switch 문을 사용할 때와 같이 코드 내에서 결정을 내릴 때 사용
-// */
-
-//enum Temperature {
-//    case hot
-//    case warm
-//    case cold(centigrade: Int)
-//}
-//func displayTempInfo(temp: Temperature){
-//    switch temp {
-//    case Temperature.hot:
-//        print("is hot")
-//    case Temperature.warm:
-//        print("is warm")
-//    case Temperature.cold(let centigrade) where centigrade <= 0:
-//        print("Ice warning: \(centigrade) degress")
-//    case .cold:
-//        print("is cold")
-//    }
-//}
-//
-//displayTempInfo(temp: .hot)
-////열거형 값이 함수로 전달될 때, 이제는 포함된 온도 값과 함께 전달된다.
-//displayTempInfo(temp: .cold(centigrade: -10))
-
-
-///*
-// 열거형 예제01
-// 열거형을 사용하여 카드의 무늬와 숫자를 나타내는 타입을 정의하고,
-// 카드 두 장을 비교하여 같은 무늬인지, 같은 숫자인지, 모두 같은지 또는 모두 다른지 출력하는 함수를 작성하세요.
-// */
-//
-//enum Suit {
-//    case spade, heart, diamond, club
-//}
-//
-//enum Rank {
-//    case ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
-//}
-//
-//struct Card {
-//    var suit: Suit
-//    var rank: Rank
-//}
-//
-//func compareCards(card1: Card, card2: Card) {
-//    switch (card1.suit, card2.suit, card1.rank, card2.rank) {
-//    case let(x1, x2, x3, x4) where x1 == x2 && x3 == x4 :
-//        print("두 카드는 모두 같습니다.")
-//    case let(x1,x2,_,_) where x1 == x2:
-//        print("두 카드는 같은 무늬입니다.")
-//    case let(_,_,x3,x4) where x3 == x4:
-//        print("두 카드는 같은 숫자입니다.")
-//    default:
-//        print("두 카드는 모두 다릅니다.")
-//    }
-//}
-//let card1 = Card(suit: .spade, rank: .ace)
-//let card2 = Card(suit: .heart, rank: .king)
-////카드 두장을 비교합니다.
-//compareCards(card1: card1, card2: card2)
-//
-///*
-// 열거형 예제02.
-// 열거형을 사용하여 동물의 종류와 이름을 나타내는 타입을 정의하고,
-// 동물의 배열을 만들어서 반복문으로 각 동물의 종류와 이름을 출력하는 함수를 작성하세요.
-// */
-//
-//enum Animal {
-//    case dog(name:String)
-//    case cat(name:String)
-//    case bird(name:String)
-//}
-//func checkAnimal(animals: [Animal]){
-//    for animal in animals {
-//        switch animal {
-//        case .dog(name: let name):
-//            print("이 동물은 개이고 이름은 \(name)입니다.")
-//        case .cat(name: let name):
-//            print("이 동물은 고양이 이름은 \(name)입니다.")
-//        case .bird(name: let name):
-//            print("이 동물은 새이고 이름은 \(name)입니다.")
-//        }
-//    }
-//
-//}
-//// 예시:
-//let animals = [Animal.dog(name: "바둑이"), Animal.cat(name: "나비"), Animal.bird(name: "짹짹이")]
-//checkAnimal(animals: animals)
-// 출력결과
-//이 동물은 개이고 이름은 바둑이입니다.
-//이 동물은 고양이이고 이름은 나비입니다.
-//이 동물은 새이고 이름은 짹짹이입니다.
-//
-///*
-//// 열거형 예제 03 ㅍ
-//// 열거형을 사용하여 계절을 나타내는 타입을 정의하고,
-//// 현재 날짜에 따라서 어떤 계절인지 출력하는 함수를 작성하세요.
-//// (날짜는 임의로 지정해도 됩니다.)
-//// */
-//
-//enum Today{
-//    case month
-//    case day
-//}
-//func getSeason(date: (month: Int,day: Int))->String{
-////    print("\(date)")
-//    switch date {
-//    case (1...3,_):
-//        return "spring"
-//    case (4...6,_):
-//        return "summer"
-//    case (7...10,_):
-//        return "autumn"
-//    case (11...12,_):
-//        return "winter"
-//    default:
-//        return "asdd"
-//    }
-//}
-//
-//// 예시:
-//let today = (month: 10, day: 17)
-//let season = getSeason(date: today)
-//
-//print("오늘은 \(season)입니다.")  // 오늘은 autumn입니다.
-//print("오늘은 \( getSeason(date: (month: 6, day: 17)) )입니다.")      // 오늘은 summer입니다.
-//print("오늘은 \( getSeason(date: (month: 12, day: 15)) )입니다.")     // 오늘은 winter입니다.
-//print("오늘은 \( getSeason(date: (month: 3, day: 1)) )입니다.")       // 오늘은 spring입니다.
-//
-
-
-//
-///*
-// 열거형 예제 04
-// 열거형을 사용하여 산술 연산자를 나타내는 타입을 정의하고,
-// 두 개의 정수와 산술 연산자를 매개변수로 받아서 해당 연산을 수행하고 결과를 반환하는 함수를 작성하세요.
-// */
-//
-//enum Op {
-//    case divide
-//    case add
-//    case subtract
-//    case multiply
-//}
-//
-//func calculate(num1: Double, num2: Double, op:Op) -> Int {
-//    switch (op) {
-//    case .divide:
-//        Int(num1/num2)
-//    case .add:
-//        Int(num1+num2)
-//    case .subtract:
-//        Int(num1-num2)
-//    case .multiply:
-//        Int(num1*num2)
-//
-//    }
-//}
-//// 예시:
-//let result = calculate(num1: 10, num2: 5, op: .divide)
-//
-//print("결과는 \(result) 입니다.")      //결과는 2입니다.
-//print("결과는 \( calculate(num1: 10, num2: 5, op: .add) ) 입니다.")        //결과는 15입니다.
-//print("결과는 \( calculate(num1: 10, num2: 5, op: .subtract) ) 입니다.")   //결과는 5입니다.
-//print("결과는 \( calculate(num1: 10, num2: 5, op: .multiply) ) 입니다.")   //결과는 50입니다.
-//
 /*
- 열거형 예제 05
- 열거형을 사용하여 음료의 종류와 가격을 나타내는 타입을 정의하고,
- 음료의 배열을 만들어서 반복문으로 각 음료의 종류와 가격을 출력하는 함수를 작성하세요.
+온도 변환 함수
+섭씨 온도를 화씨 온도로 변환하는 함수를 작성하세요.
+단, 섭씨 온도가 -273.15도보다 낮으면 InvalidTemperature 에러를 발생시키세요.
+*/
+//(°C × 9/5) + 32 = °F
+
+enum TemperatureError: Error {
+    case invalidTemperature
+}
+func celsiusToFahrenheit(_ expression: Float) throws -> Float{
+    
+    guard expression > -273.15 else {
+        throw TemperatureError.invalidTemperature
+    }
+    return (expression * 9/5) + 32
+}
+// 예시:
+do {
+    let fahrenheit = try celsiusToFahrenheit(-300)
+    print(fahrenheit)
+} catch TemperatureError.invalidTemperature {
+    print("Invalid temperature")
+}
+/*
+에러 핸들링 예제 02
+비밀번호 검증 함수
+사용자가 입력한 비밀번호가 다음 조건을 만족하는지 검증하는 함수를 작성하세요.
+최소 8자 이상
+최소 하나의 대문자, 소문자, 숫자, 특수문자 포함
+조건을 만족하지 않으면 PasswordError 에러를 발생시키세요.
+*/
+
+enum PasswordError: Error {
+    case tooShort
+    case missingUppercase
+    case missingLowercase
+    case missingNumber
+    case missingSymbol
+}
+//let regexPattern = "^[0-9a-zA-Z]*$"
+
+// 숫자와 영문자만 포함되지 않았다면 false를 반환
+
+func validatePassword(_ expression:String) throws{
+    let upperCase = ".*[A-Z]+.*" //대문자 포함
+    let lowerCase = ".*[a-z]+.*" //소문자 포함
+    let numberCase = ".*[0-9]+.*" //숫자 포함
+    let symbolsCase = ".*[!@#$%^&*()_+-=[]{}|;:,./<>?]+.*" // 기호 포함
+
+    guard expression.count > 8 else {
+        throw PasswordError.tooShort
+    }
+    
+    guard let _ = expression.range(of: upperCase, options: .regularExpression) else {
+        throw PasswordError.missingUppercase
+    }
+    
+    guard let _ = expression.range(of: lowerCase, options: .regularExpression) else {
+        throw PasswordError.missingLowercase
+    }
+    
+    guard let _ = expression.range(of: numberCase, options: .regularExpression) else {
+        throw PasswordError.missingNumber
+    }
+    
+    guard let _ = expression.range(of: symbolsCase, options: .regularExpression) else {
+        throw PasswordError.missingSymbol
+    }
+}
+//let symbols = "!@#$%^&*()_+-=[]{}|;:,./<>?"
+// 예시:
+do {
+    try validatePassword("AAAAaaaAAA2")
+} catch let error as PasswordError {
+    switch error {
+    case .tooShort:
+        print("Password is too short")
+    case .missingUppercase:
+        print("Password is missing an uppercase letter")
+    case .missingLowercase:
+        print("Password is missing a lowercase letter")
+    case .missingNumber:
+        print("Password is missing a number")
+    case .missingSymbol:
+        print("Password is missing a symbol")
+    }
+}
+
+
+/*
+ 에러 핸들링 예제 03
+ ATM 기계 클래스
+ ATM 기계를 나타내는 클래스를 작성하세요.
+ 다음 속성과 메서드를 구현하세요.
+ balance: 잔액을 나타내는 Double 타입의 속성. 초기값은 0이다.
+ deposit(amount: Double): 입금하는 메서드.
+
+ amount가 0보다 크면 잔액에 더하고 true를 반환한다.
+ 그렇지 않으면 false를 반환한다.
+ withdraw(amount: Double) throws -> Double: 출금하는 메서드.
+
+ amount가 0보다 크고 잔액보다 작거나 같으면 잔액에서 빼고 amount를 반환한다.
+ amount가 0보다 작으면 NegativeAmount 에러를 발생시킨다.
+ amount가 잔액보다 크면 InsufficientBalance 에러를 발생시킨다.
  */
-//enum Beverage {
-//    case coffee(price: Int)
-//    case tea(price: Int)
-//    case juice(price: Int)
-//}
-//func printTypeAndPrice(beverages:[Beverage]){
-//    for beverage in beverages {
-////        print(beverage)
-//        switch beverage {
-//        case .coffee(price: let price):
-//            print("이 음료는 커피이고 가격은\(price)입니다")
-//        case .tea(price: let price):
-//            print("이 음료는 차이고 가격은\(price)입니다")
-//        case .juice(price: let price):
-//            print("이 음료는 주스이고 가격은\(price)입니다")
-//        }
-//    }
-//}
-//// 예시:
-//let beverages = [Beverage.coffee(price: 3000), Beverage.tea(price: 2000), Beverage.juice(price: 2500)]
-//printTypeAndPrice(beverages: beverages)
-//// 출력결과
-//이 음료는 커피이고 가격은 3000원입니다.
-//이 음료는 차이고 가격은 2000원입니다.
-//이 음료는 주스이고 가격은 2500원입니다.
-//
-//열거형 문제푸는법1
-//1. 함수를 만든다.(함수는 낙타등 표기법이라 찾기 쉽다)
-//2. 사용자 지정데이터 유형들에 인자들(.A,.B)의 열거형으로 압축
-//3. 함수안에 인자를 선언한후 switch문으로 값을 변환한다.
-//4. 중간중간 print를한다.
+class ATM{
+    var balance: Double = 0
+    
+    func deposit(amount:Double){
+        balance += amount
+    }
+
+    func withdraw(amount: Double) throws -> Double {
+        guard amount > 0 else {
+            throw ATMError.negativeAmount
+        }
+
+        guard balance > amount else {
+            throw ATMError.insufficientBalance
+        }
+        balance -= amount
+        return balance
+    }
+}
+
+enum ATMError: Error{
+        case negativeAmount,insufficientBalance
+}
+
+// 예시:
+let atm = ATM()
+atm.deposit(amount: 1000)
+print(atm.balance)              // 1000.0
+
+do {
+    let cash = try atm.withdraw(amount: 500)
+    print(cash)                 // 500.0
+} catch let error as ATMError {
+    switch error {
+    case .negativeAmount:
+        print("Cannot withdraw a negative amount")
+    case .insufficientBalance:
+        print("Cannot withdraw more than balance")
+    }
+}
+
+print(atm.balance)              // 500.0
+
+/*
+ 에러 핸들링 예제 04
+ 계산기 구조체
+
+ 사칙연산을 수행하는 계산기를 나타내는 구조체를 작성하세요.
+
+ 다음 속성과 메서드를 구현하세요.
+
+ result: 계산 결과를 나타내는 Double 타입의 속성. 초기값은 0이다.
+ add(_ number: Double): result에 number를 더하는 메서드.
+ subtract(_ number: Double): result에 number를 빼는 메서드.
+ multiply(_ number: Double): result에 number를 곱하는 메서드.
+ divide(_ number: Double) throws: result에 number를 나누는 메서드.
+ 단, number가 0이면 DivisionByZero 에러를 발생시킨다.
+ 
+ mutating
+ 특정 메소드 내에서 구조체 또는 열거형의 프로퍼티를 수정해야 하는 경우, 해당 메소드의 동작을 변경하도록 하는 것
+ */
+
+struct Calculator {
+    var result:Int = 0
+    mutating func add(_ number:Int){
+        result = result + number
+    }
+    
+    mutating func subtract(_ number:Int){
+        result = result - number
+    }
+    
+    mutating func multiply(_ number:Int){
+        result = result * number
+    }
+    
+    mutating func divide(_ number:Int) throws {
+        guard number != 0 else {
+            throw CalculatorError.divisionByZero
+        }
+        result = result / number
+    }
+}
+enum CalculatorError: Error {
+    case divisionByZero
+}
+// 예시:
+var calculator = Calculator()
+calculator.add(10)
+print(calculator.result)        // 10.0
+
+calculator.subtract(3)
+print(calculator.result)        // 7.0
+
+calculator.multiply(2)
+print(calculator.result)        // 14.0
+
+do {
+    try calculator.divide(7)
+    print(calculator.result)    // 2.0
+} catch CalculatorError.divisionByZero {
+    print("Cannot divide by zero")
+}
+
+/*
+ 에러 핸들링 예제 05
+ 도서관 클래스
+ 도서관을 나타내는 클래스를 작성하세요.
+ 다음 속성과 메서드를 구현하세요.
+
+ books: 책들을 나타내는 [String] 타입의 속성. 초기값은 빈 배열이다.
+ limit: 대출 가능한 책의 수를 나타내는 Int 타입의 속성. 초기값은 3이다.
+ borrow(books: [String]) throws -> String: 책을 대출하는 메서드.
+ 매개변수 books 항목이 books 속성에 있고 limit보다 적게 대출했다면 books 항목을 books에서 제거하고 "(book1, ...)을 대출했습니다."라는 문자열을 반환한다.
+ 매개변수 books 항목 books 속성에 없다면 BookNotFound 에러를 발생시키고, limit 이상으로 대출했다면 LimitExceeded 에러를 발생시킨다.
+ */
+
+class Library{
+    var books:[String] = []
+    var limit:Int = 3
+    
+    init(books: [String], limit: Int) {
+        self.books = books
+        self.limit = limit
+    }
+
+    func borrow(books:[String]) throws ->String{
+        for book in books {
+            
+            guard self.books.filter({$0 == book}).count != 0 else {
+                throw LibraryError.bookNotFound
+                    }
+            guard books.count <= limit else {
+                throw LibraryError.limitExceeded
+                    }
+            
+            self.books.remove(at: books.firstIndex(of: book)! )
+            limit -= -1
+        }
+        return "\(books.joined(separator: ","))를 대출했습니다"
+    }
+}
+
+enum LibraryError: Error {
+    case bookNotFound,limitExceeded
+}
+// 예시:
+let library = Library(books: ["Harry Potter", "The Little Prince", "The Hobbit"], limit: 2)
+do {
+    let result = try library.borrow(books: ["Harry Potter", "The Little Prince"])
+    print(result)
+} catch LibraryError.bookNotFound {
+    print("책을 찾을 수 없습니다.")
+} catch LibraryError.limitExceeded {
+    print("대출 한도를 초과했습니다.")
+}
+// limit: 1 일 경우 대출 한도를 초과했습니다.
+// limit: 2 일 경우 The Harry Potter, Little Prince을 대출했습니다.
