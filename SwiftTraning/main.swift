@@ -34,6 +34,3 @@ import Foundation
         return await a + b
     }
 
-
-//     print(await sum(start: 1,end: 100))   // 5050?
-
