@@ -92,19 +92,20 @@ func Ch14Puls집합Set예제(){
 //    print(subsets) // [[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]
     
     let setI: Set<Int> = [1, 2, 3]
-    func getSubsets(_ nums: Set<Int>) -> [[Int]] {
-        let arr:[Int] = Array(nums)
+    func getSubsets(_ setInt: Set<Int>) -> [[Int]] {
+        let arr:[Int] = Array(setInt) 
+        
         var result: [[Int]] = []
-        if arr.count == 0 {
-            return result
-        }
         
         result.append([])
 
-        for i in 0..<nums.count {
-            let count = result.count
-            for j in 0..<count {
+        //1. 3만큼 돌림
+        for i in 0..<setInt.count {
+            //1 -> 2 -> 3만큼될림
+            let cnt = result.count
+            for j in 0..<cnt {
                 result.append(result[j] + [arr[i]])
+                print(result[j],[arr[i]])
             }
         }
         
@@ -113,4 +114,5 @@ func Ch14Puls집합Set예제(){
     let subsets = getSubsets(setI)
     print(subsets) // [[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]
     
+
 }

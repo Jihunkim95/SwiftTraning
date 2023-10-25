@@ -110,5 +110,60 @@ func Ch14배열과딕셔너리예제(){
     let dict5 = [1: 10, 2: 20, 3: 30]
     let result5 = sumOfKeysAndValues(dict: dict5)
     print(result5)       // (6, 60)
+    /*
+    딕셔너리 예제 09
+    다음과 같은 딕셔너리가 주어졌을 때, 키와 값을 서로 바꾼 새로운 딕셔너리를 만드는 코드를 작성하세요.
+    (단, 기존의 딕셔너리는 변경하지 않는다.)
+     */
+    
+    let colors = ["red": "#FF0000", "green": "#00FF00", "blue": "#0000FF"]
+    var reverseCol:[String:String] = [:]
+    for (key,value) in colors{
+        reverseCol[value] = key
+    }
+    /*
+     딕셔너리 예제 10
+     다음과 같은 두 개의 딕셔너리가 주어졌을 때, 두 딕셔너리의 공통된 키의 키와 값을 출력하는 코드를 작성하세요.
+     */
+    
+    let dict10 = ["a": 1, "b": 2, "c": 3]
+    let dict11 = ["b": 2, "c": 4, "d": 5]
+    
+    //1.두개 dict 교집합의 키찾기
+    var interArr:Set = Set(dict10.keys).intersection(dict11.keys)
+    //2.결과 값 dict생성
+    var resultDict:[String:String] = [:]
+    var str:String = ""
+    for i in interArr{
+        //3.교집합 키의 값 담기
+        str = ""
+        str += "\(String(dict10[i]!)),"
+        str += "\(String(dict11[i]!))"
+        //4.공통 키에대한 값 입력
+        resultDict[i] = str
+    }
+    //5.결과
+    print(resultDict)
+    
+    /*
+    딕셔너리 예제 11
+    다음과 같은 딕셔너리가 주어졌을 때, 값이 짝수인 키와 값을 삭제하는 코드를 작성하세요.
+     */
+    var even = ["a": 2, "b": 3, "c": 4, "d": 5]
+    for (key,value) in even{
+        if value%2 == 0{
+            even.removeValue(forKey: key)
+        }
+    }
+    print(even)
+    
+    /*
+     딕셔너리 예제 12
+     다음과 같은 딕셔너리가 주어졌을 때, 키를 알파벳 순서로 정렬하여 출력하는 코드를 작성하세요.
+     */
+    
+    let countries = ["KR": "South Korea", "US": "United States", "JP": "Japan", "CN": "China"]
+
+    print(countries.keys.sorted(by: <))
 }
 
