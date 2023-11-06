@@ -29,9 +29,9 @@ func OptionalChaining() {
         }
     }
 
-    var park : Person? = Person(name: "park", email: "oz@test.com", address: "No!")
+    let park : Person? = Person(name: "park", email: "oz@test.com", address: "No!")
 
-    park?.name
+//    park?.name
     //park?.contacts = nil
 
     if let email = park?.contacts?.email {
@@ -52,8 +52,10 @@ func OptionalChaining() {
         var age: Int?
     }
 
-    var person: Person1? = Person1(name: "Kim", age: 25)
-
+    let person: Person1? = Person1(name: "Kim", age: 25)
+    //옵셔널 체이닝
+    print(person?.name ?? "non")
+    // or
     if let name = person?.name {
         print(name)
     }else{
@@ -82,7 +84,7 @@ func OptionalChaining() {
         var author: Author?
     }
 
-    var book: Book? = Book(title: "The Little Prince", author: Author(name: "Antoine de Saint-Exupéry"))
+    let book: Book? = Book(title: "The Little Prince", author: Author(name: "Antoine de Saint-Exupéry"))
 
     if let title = book?.title, let name = book?.author?.name{
         print(title)
@@ -99,7 +101,7 @@ func OptionalChaining() {
      */
     
     // 예시코드
-    var numbers: [Int]? = [1, 2, 3]
+    let numbers: [Int]? = [1, 2, 3]
     
     if let numbers2 = numbers{
         print(numbers2[0] + 10)
@@ -112,7 +114,7 @@ func OptionalChaining() {
      */
     
     // 예시코드
-    var students: [String: Int]? = ["Kim": 90, "Lee": 80, "Park": 85]
+    let students: [String: Int]? = ["Kim": 90, "Lee": 80, "Park": 85]
     
     if let students = students{
         //딕셔너리에 default를 주면서 기본 옵셔널 체이닝
@@ -136,7 +138,7 @@ func OptionalChaining() {
         }
     }
 
-    var animal: Animal? = Dog()
+    let animal: Animal? = Dog()
     
     if let animal = animal{
         print(animal.speak())
@@ -166,26 +168,24 @@ func OptionalChaining() {
         }
     }
 
-    var matrix: Matrix? = Matrix(elements: [[1, 2, 3], [4, 5, 6]])
+    let matrix: Matrix? = Matrix(elements: [[1, 2, 3], [4, 5, 6]])
     
     if let matrix = matrix{
         print(matrix.transpose().elements)
     }else{
         print("옵바안됨")
     }
+    
+    print(matrix?.transpose().elements ?? [[Int]]())
     /*
     옵셔널 체이닝 예제 07
     다음 코드에서 옵셔널 체이닝을 이용하여 numbers 배열의 모든 요소를 더한 값을 출력하세요.
 
     numbers가 nil이면 0을 출력하세요.
      */
-    var numbers7: [Int]? = [1, 2, 3, 4, 5]
+    let _: [Int]? = [1, 2, 3, 4, 5]
     
-    if let numbers = numbers7{
-        print(numbers.reduce(0,+))
-    }else{
-        print(0)
-    }
+//    print(numbers7.)
     
     /*
      옵셔널 체이닝 예제 08
@@ -198,13 +198,13 @@ func OptionalChaining() {
         var score: Int
     }
 
-    var students8: [Student]? = [Student(name: "Kim", score: 80),
+    let students8: [Student]? = [Student(name: "Kim", score: 80),
                                 Student(name: "Lee", score: 90),
                                 Student(name: "Park", score: 85)]
-    if let students = students8{
-        print(students.map{$0.score}.reduce(0,+)/students.count)
-//        print(students.count)
-//        var A = Student().name
-    }
+//    if let students = students8{
+    print((students8?.map{$0.score}.reduce(0,+) ?? 0)/(students8?.count ?? 1) )
+//    }else{
+//        print(0)
+//    }
     
 }

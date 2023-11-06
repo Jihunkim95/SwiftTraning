@@ -19,5 +19,8 @@ import Foundation
 //Ch09PlusFilterMapReduce()
 //Ch09PlusFilterMapReduce예제()
 //OptionalChaining()
-var arr:[Int] = [1,2,3,4]
-print( Array(arr[0...3]).enumerated().filter{$0.offset % 2 == 0}.map{$0.element})
+
+//프로토콜지향프로그래밍()
+//프로토콜지향_프로그래밍_예제()
+//Subscripts()
+Subscripts예제()
