@@ -27,6 +27,17 @@ func Subscripts(){
 
     let mysc = MySubscripts(arr: ["Park", "Kim", "Lee"])
     print(mysc[1])
+    
+    let hello: String = "Hello"
+    print(hello[1])
+    
+
 }
 
-
+//String 확장
+extension String {
+    subscript(index: Int) -> Character{
+        let i = self.index(self.startIndex,offsetBy: index)
+        return self[i]
+    }
+}

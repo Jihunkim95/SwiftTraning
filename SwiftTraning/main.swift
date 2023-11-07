@@ -23,4 +23,4 @@ import Foundation
 //프로토콜지향프로그래밍()
 //프로토콜지향_프로그래밍_예제()
 //Subscripts()
-Subscripts예제()
+//Subscripts예제()

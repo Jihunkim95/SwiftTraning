@@ -90,13 +90,9 @@ func Subscripts예제(){
      다음 프로토콜을 채택하는 구조체를 정의하고, 프로토콜의 익스텐션으로 연산 프로퍼티를 추가하세요.
      */
 
+//    구조체 타입이라 init을 생성 안해도됨
     struct Flower13 : Colorful13{
         var color: String
-        
-        init(color: String) {
-            self.color = color
-        }
-        
     }
 
     let flower = Flower13(color: "Yellow")

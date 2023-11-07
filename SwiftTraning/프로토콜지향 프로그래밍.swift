@@ -39,7 +39,9 @@ protocol MyProtocolMethod {
 
 // 변경 메서드 요구사항 (mutating method requirements)
 protocol MyMutatingProtocol{
+    
     var name: String { get }
+    //구조체의 경우 메서드 안에서 프로퍼티 값을 변경해야 할 경우
     mutating func updateName(name: String)
 }
 
@@ -143,7 +145,7 @@ func 프로토콜지향프로그래밍(){
         }
     }
 
-    MyClass.calcName(name: "park", str: "good")
+    print(MyClass.calcName(name: "park", str: "good"))
     
     struct MyStruct: MyProtocol, MyProtocolFullName {
         var mustBeValue: Int{
@@ -169,7 +171,6 @@ func 프로토콜지향프로그래밍(){
         //타입 메서드를 구조체에서 구현하기 위해서는 static func 로 시작
         //프로토콜 내부 규격에서 추가로 정의할때 static
         static func goodMethod() -> String {
-            print("dd")
             return "good"
         }
         //class 내에서 구현하기위해 class func을
@@ -177,11 +178,12 @@ func 프로토콜지향프로그래밍(){
     }
     
     //타입 메서드
-    MyMethod.goodMethod()
-    
+
+    let myMethod_01 = MyMethod.goodMethod()
+    print(myMethod_01)
     //인스턴스 메서드
     let myMethod = MyMethod()
-    myMethod.random()
+    print(myMethod.random())
     
 
     //열거형
@@ -215,9 +217,9 @@ func 프로토콜지향프로그래밍(){
     
     //연산 프로퍼티 확장
     let myNum = 2
-    myNum.isEven
+    print(myNum.isEven)
 
-    2.isEven
+    print(2.isEven)
     
     //프로토콜 + extension
     class MyExtensionClass : NoExtension {
@@ -229,7 +231,7 @@ func 프로토콜지향프로그래밍(){
     }
 
     let myExtensionClass = MyExtensionClass()
-    myExtensionClass.test
+    print(myExtensionClass.test)
 
 
     print("end")
